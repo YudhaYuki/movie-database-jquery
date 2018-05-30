@@ -11,17 +11,18 @@
 
 var osomMovie = {};
 
-osomMovie.init = function() {
-    osomMovie.filterSlider()
-}
-
+osomMovie.database = [];
 osomMovie.loadAssets = function() {
     $.getJSON("db/movies.json", function(data) {
-        console.log(data);
+        osomMovie.database = data;
         osomMovie.init();
     });
 }
 
+osomMovie.init = function() {
+    osomMovie.filterSlider();
+    osomMovie.getTypes();
+}
 
 osomMovie.filterSlider = function() {
 
@@ -40,6 +41,16 @@ osomMovie.filterSlider = function() {
         });
     });
 
+};
+
+osomMovie.getTypes = function() {
+    var types = [];
+
+    $.each(osomMovie.database, function(index, element) {
+        var typeValue = osomMovie.database[index].type;
+        types.push(typeValue);
+        $('#categories').append('<option value="'+typeValue+'">'+typeValue+'</option>');
+    })
 };
 
 osomMovie.loadAssets();
