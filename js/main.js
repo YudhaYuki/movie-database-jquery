@@ -47,9 +47,12 @@ osomMovie.getTypes = function() {
     var types = [];
 
     $.each(osomMovie.database, function(index, element) {
-        var typeValue = osomMovie.database[index].type;
-        types.push(typeValue);
-        $('#categories').append('<option value="'+typeValue+'">'+typeValue+'</option>');
+        if ($.inArray(osomMovie.database[index].type, types)) {
+            var typeValue = osomMovie.database[index].type;
+            types.push(typeValue);
+            $('#categories').append('<option value="'+typeValue+'">'+typeValue+'</option>');
+        } 
+
     })
 };
 
