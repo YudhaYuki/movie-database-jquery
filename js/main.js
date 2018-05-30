@@ -15,6 +15,14 @@ osomMovie.init = function() {
     osomMovie.filterSlider()
 }
 
+osomMovie.loadAssets = function() {
+    $.getJSON("db/movies.json", function(data) {
+        console.log(data);
+        osomMovie.init();
+    });
+}
+
+
 osomMovie.filterSlider = function() {
 
     $('.filter.open').on('click', function() {
@@ -34,4 +42,4 @@ osomMovie.filterSlider = function() {
 
 };
 
-osomMovie.init();
+osomMovie.loadAssets();
